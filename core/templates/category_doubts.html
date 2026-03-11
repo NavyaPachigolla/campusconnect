@@ -1,0 +1,47 @@
+<h2>{{ category.name }} - Doubts</h2>
+
+<a href="{% url 'post_doubt' %}?category={{ category.id }}">
+    <button>Post Doubt in This Category</button>
+</a>
+
+<hr>
+
+{% for doubt in doubts %}
+    <div>
+        <h4>
+            <a href="{% url 'doubt_detail' doubt.id %}">
+                {{ doubt.title }}
+            </a>
+        </h4>
+        <p>{{ doubt.description }}</p>
+    </div>
+    <hr>
+{% empty %}
+    <p>No doub{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ category.name }} Doubts</h3>
+
+<a href="{% url 'post_doubt' %}?category={{ category.id }}"
+   class="btn btn-primary mb-3">
+   Post Doubt in This Category
+</a>
+
+{% for doubt in doubts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>{{ doubt.title }}</h5>
+            <p>{{ doubt.description|truncatewords:15 }}</p>
+            <a href="{% url 'doubt_detail' doubt.id %}" 
+               class="btn btn-sm btn-info">
+               View Details
+            </a>
+        </div>
+    </div>
+{% empty %}
+    <p>No doubts in this category.</p>
+{% endfor %}
+
+{% endblock %}ts in this category yet.</p>
+{% endfor %}

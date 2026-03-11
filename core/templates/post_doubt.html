@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Post a Doubt</h3>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- Title -->
+    <input type="text" 
+           name="title" 
+           class="form-control mb-3" 
+           placeholder="Enter doubt title" 
+           required>
+
+    <!-- Description -->
+    <textarea name="description" 
+              class="form-control mb-3" 
+              placeholder="Enter description"
+              required></textarea>
+
+    <!-- Category Dropdown -->
+    <select name="category" class="form-control mb-3" required>
+        <option value="">Select Category</option>
+        {% for cat in categories %}
+            <option value="{{ cat.id }}"
+                {% if selected_category == cat.id|stringformat:"s" %}
+                    selected
+                {% endif %}
+            >
+                {{ cat.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="btn btn-primary">
+        Post Doubt
+    </button>
+
+</form>
+
+{% endblock %}

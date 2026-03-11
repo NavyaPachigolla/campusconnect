@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>All Doubts</h2>
+
+<!-- ✅ Show button only for Junior -->
+{% if user.user_type == 'junior' %}
+    <a href="{% url 'post_doubt' %}" class="btn btn-primary mb-3">
+        Post Doubt
+    </a>
+{% endif %}
+
+<hr>
+
+
+<!-- Doubts List -->
+{% for doubt in doubts %}
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5>{{ doubt.title }}</h5>
+            <p>{{ doubt.description|truncatewords:20 }}</p>
+
+            <a href="{% url 'doubt_detail' doubt.id %}" 
+               class="btn btn-sm btn-info">
+                View Details
+            </a>
+        </div>
+    </div>
+{% empty %}
+    <p>No doubts found.</p>
+{% endfor %}
+
+{% endblock %}

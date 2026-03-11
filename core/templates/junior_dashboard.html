@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Junior Dashboard</h2>
+
+<a href="{% url 'post_doubt' %}" class="btn btn-primary">Post Doubt</a>
+<a href="{% url 'home' %}" class="btn btn-secondary">My Doubts History</a>
+
+{% endblock %}

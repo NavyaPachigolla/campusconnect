@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4 class="text-danger">Similar question already exists. Please review before posting.</h4>
+
+{% for doubt in similar_doubts %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h5>{{ doubt.title }}</h5>
+        <p>{{ doubt.description }}</p>
+    </div>
+</div>
+{% endfor %}
+
+<a href="javascript:history.back()" class="btn btn-warning">Continue Anyway</a>
+
+{% endblock %}

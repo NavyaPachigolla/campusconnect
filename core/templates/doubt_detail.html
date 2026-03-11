@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card mb-3">
+    <div class="card-body">
+
+```
+    <h4>{{ doubt.title }}</h4>
+
+    <p>{{ doubt.description }}</p>
+
+    <p>
+        <small>Posted by: {{ doubt.user.username }}</small>
+    </p>
+
+</div>
+```
+
+</div>
+
+<h5>Answers</h5>
+
+{% for answer in answers %}
+
+<div class="card mb-2">
+    <div class="card-body">
+
+```
+    <p>{{ answer.content }}</p>
+
+    <small>Answered by {{ answer.user.username }}</small>
+
+</div>
+```
+
+</div>
+
+{% empty %}
+
+<p>No answers yet.</p>
+
+{% endfor %}
+
+{% if user.user_type == 'senior' %}
+
+<a href="{% url 'add_answer' doubt.id %}" class="btn btn-success mt-3">
+    Add Answer
+</a>
+
+{% endif %}
+
+{% endblock %}

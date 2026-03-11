@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Add Answer</h3>
+
+<div class="card mb-3">
+    <div class="card-body">
+
+```
+    <h5>{{ doubt.title }}</h5>
+
+    <p>{{ doubt.description }}</p>
+
+</div>
+```
+
+</div>
+
+<form method="POST">
+
+```
+{% csrf_token %}
+
+<div class="mb-3">
+
+    <label>Write your answer</label>
+
+    <textarea name="content" class="form-control" rows="5" required></textarea>
+
+</div>
+
+<button type="submit" class="btn btn-primary">
+    Submit Answer
+</button>
+```
+
+</form>
+
+{% endblock %}

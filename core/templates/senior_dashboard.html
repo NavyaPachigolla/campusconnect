@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Senior Dashboard</h2>
+
+<h4>All Doubts Posted by Juniors</h4>
+
+{% for doubt in doubts %}
+
+<div class="card mb-3">
+    <div class="card-body">
+
+```
+    <h5>{{ doubt.title }}</h5>
+
+    <p>{{ doubt.description|truncatewords:15 }}</p>
+
+    <p>
+        <small>Posted by: {{ doubt.user.username }}</small>
+    </p>
+
+    <a href="{% url 'doubt_detail' doubt.id %}" class="btn btn-info btn-sm">
+        View & Answer
+    </a>
+
+</div>
+```
+
+</div>
+
+{% empty %}
+
+<p>No doubts available.</p>
+
+{% endfor %}
+
+{% endblock %}
