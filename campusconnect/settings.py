@@ -80,9 +80,14 @@ WSGI_APPLICATION = 'campusconnect.wsgi.application'
 
 
 DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'hdBGLvXiaZuYTtRpxvdSyKptBQCNwfvN',
+        'HOST': 'mysql.railway.internal',
+        'PORT': '3306',
+    }
 }
 
 
