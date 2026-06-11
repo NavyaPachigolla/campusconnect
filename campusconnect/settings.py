@@ -5,15 +5,18 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = 'django-insecure-620&t=9ad6lm9eu(owrsooki5u@bu0p8)ik2a4^m!zm$ln7l4s'
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-620&t=9ad6lm9eu(owrsooki5u@bu0p8)ik2a4^m!zm$ln7l4s"
+)
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["*"]
 
-# ✅ CSRF FIX (IMPORTANT)
+# Render Deployment
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.up.railway.app"
+    "https://*.onrender.com",
 ]
 
 # APPLICATIONS
@@ -41,11 +44,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'campusconnect.urls'
 
-# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,7 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'campusconnect.wsgi.application'
 
-# ✅ DATABASE (IMPORTANT FIX)
+# DATABASE
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
@@ -74,7 +76,7 @@ else:
         }
     }
 
-# PASSWORD VALIDATION
+# PASSWORDS
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -98,7 +100,11 @@ USE_TZ = True
 
 # STATIC FILES
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = (
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 # CUSTOM USER
 AUTH_USER_MODEL = 'core.User'
@@ -107,3 +113,5 @@ AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/redirect/'
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
