@@ -222,7 +222,7 @@ This project is developed for educational purposes.
 
 # 👩‍💻 Developer
 
-**Sukruti Naidu Chikkala**
+**Navya Pachigolla**
 
 - GitHub: https://github.com/NavyaPachigolla
 - LinkedIn: https://www.linkedin.com/in/navya-pachigolla-875458323
